@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    tools{
+        maven "MVN_HOME"
+        jdk "JDK"
     stages {
         stage('Static Analysis') {
             steps {
@@ -9,7 +12,7 @@ pipeline {
         stage('Compile') {
             steps {
                 echo 'Compile the source code'
-                bat "MVN_HOME -Dmaven.test.failure.ignore=true clean package"
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
             post {
                 always{
